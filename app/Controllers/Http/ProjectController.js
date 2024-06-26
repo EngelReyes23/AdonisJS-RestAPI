@@ -1,5 +1,7 @@
 'use strict'
 
+const AuthorizationService = require('../../Services/AuthorizationService')
+
 const Project = use('App/Models/Project')
 
 class ProjectController {
@@ -12,30 +14,34 @@ class ProjectController {
     const user = await auth.getUser()
     const { title, description } = request.all()
     const project = new Project()
+
     project.fill({
       title,
       description
     })
+
     await user.projects().save(project)
     return project
   }
 
-  async destroy({ params, auth, response }) {
+  async destroy({ params, auth }) {
     const user = await auth.getUser()
     const { id } = params
     const project = await Project.find(id)
-    if (!project) return response.status(403).send({ message: 'Project not found' })
-    if (project.user_id === user.id) {
-      await project.delete()
-      return project
-    } else
-      return response.status(403).send({ message: 'You are not allowed to delete this project' })
+
+    AuthorizationService.verifyOwner(project, user)
+
+    await project.delete()
+    return project
   }
 
-  async update({ params, request, response }) {
+  async update({ params, request, auth }) {
+    const user = await auth.getUser()
     const { id } = params
     const project = await Project.find(id)
-    if (!project) return response.status(403).send({ message: 'Project not found' })
+
+    AuthorizationService.verifyOwner(project, user)
+
     project.merge(request.only(['title', 'description']))
     await project.save()
     return project
