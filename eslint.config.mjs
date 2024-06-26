@@ -6,7 +6,7 @@ export default [
   { files: ['**/*.js'], languageOptions: { sourceType: 'commonjs' } },
   {
     languageOptions: {
-      // omite: use is not defined
+      // Omite: "use" is not defined
       globals: {
         use: 'readonly',
         ...globals.node
