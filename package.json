@@ -6,7 +6,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": "node ace test"
+    "test": "node ace test",
+    "format": "prettier --write .",
+    "linter": "standard --fix .",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,ts,json}": "eslint --fix",
+    "*.{js,ts}": "prettier --write"
   },
   "keywords": [
     "adonisjs",
@@ -28,5 +35,14 @@
   },
   "autoload": {
     "App": "./app"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.5.0",
+    "eslint": "^9.5.0",
+    "eslint-config-prettier": "^9.1.0",
+    "globals": "^15.6.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.7",
+    "prettier": "^3.3.2"
   }
 }
