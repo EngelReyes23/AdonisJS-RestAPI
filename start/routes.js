@@ -20,5 +20,11 @@ Route.group(() => {
   Route.post('login', 'UserController.login')
   Route.post('register', 'UserController.store')
 
+  // Project CRUD
   Route.get('projects', 'ProjectController.index')
-}).prefix('api/v1')
+  Route.post('projects/create', 'ProjectController.create')
+  Route.delete('projects/:id', 'ProjectController.destroy')
+  Route.patch('projects/:id', 'ProjectController.update')
+})
+  .prefix('api/v1')
+  .middleware('auth')
