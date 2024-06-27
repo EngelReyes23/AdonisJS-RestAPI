@@ -21,10 +21,14 @@ Route.group(() => {
   Route.post('register', 'UserController.store')
 
   // Project CRUD
-  Route.get('projects', 'ProjectController.index')
-  Route.post('projects/create', 'ProjectController.create')
-  Route.delete('projects/:id', 'ProjectController.destroy')
-  Route.patch('projects/:id', 'ProjectController.update')
-})
-  .prefix('api/v1')
-  .middleware('auth')
+  Route.get('projects', 'ProjectController.index').middleware('auth')
+  Route.patch('projects/:id', 'ProjectController.update').middleware('auth')
+  Route.post('projects/create', 'ProjectController.create').middleware('auth')
+  Route.delete('projects/:id', 'ProjectController.destroy').middleware('auth')
+
+  // Task CRUD
+  Route.patch('tasks/:id', 'TaskController.update').middleware('auth')
+  Route.delete('tasks/:id', 'TaskController.destroy').middleware('auth')
+  Route.get('projects/:id/tasks', 'TaskController.index').middleware('auth')
+  Route.post('projects/:id/tasks', 'TaskController.create').middleware('auth')
+}).prefix('api/v1')
