@@ -7,8 +7,9 @@
   "scripts": {
     "start": "node server.js",
     "test": "node ace test",
+    "dev": "adonis serve --dev",
     "format": "prettier --write .",
-    "linter": "standard --fix .",
+    "lint": "standard --fix .",
     "prepare": "husky install"
   },
   "lint-staged": {
@@ -19,7 +20,7 @@
     "adonisjs",
     "adonis-app"
   ],
-  "author": "",
+  "author": "EngelReyes23",
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
