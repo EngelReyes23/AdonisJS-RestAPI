@@ -11,7 +11,7 @@ This project is a basic REST API developed with AdonisJS. Below are the tools us
 
 ## Installation
 
-1. Clone the repository to your local machine. `git clone https://github.com/EngelReyes23/AdonisJS-RestAPI`
+1. Clone the repository to your local machine. `git clone https://github.com/EngelReyes23/AdonisJS-RestAPI.git`
 2. Run `npm install` to install project dependencies.
 
 ## Usage
